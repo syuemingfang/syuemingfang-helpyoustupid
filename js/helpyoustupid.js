@@ -47,10 +47,17 @@
     //! 
     //!## Options
     set: {
-      on: 'click',
+      on: 'change',
       user: '#user', //!+ **user**
       repository: '#repository', //!+ **project**
       SHA1: '#SHA1', //!+ **SHA1**
+      remote_google: '#remote_google', //!+ **remote_google**
+      remote_github: '#remote_github', //!+ **remote_github**
+      branch: '#branch', //!+ **remote_github**
+      type: '#type', //!+ **type**
+      show: '#show', //!+ **show**
+      remote: '#remote', //!+ **remote**
+      commit: '#commit' //!+ **commit**
     },
     //! 
     //!****************************************************************************************************
@@ -77,32 +84,65 @@
       // Declare
       // Constructor
       var d=new Date();
-      var user=$(set.user).val();
-      var repository=$(set.repository).val();
-      var SHA1=$(set.SHA1).val();
+      var user='<b>'+$(set.user).val()+'</b>';
+      var repository='<b>'+$(set.repository).val()+'</b>';
+      var SHA1='<b>'+$(set.SHA1).val()+'</b>';
+      var remote_google='<b>'+$(set.remote_google).val()+'</b>';
+      var remote_github='<b>'+$(set.remote_github).val()+'</b>';
+      var remote='<b>'+$(set.remote).val()+'</b>';
+      var branch='<b>'+$(set.branch).val()+'</b>';
+      var commit='<b>'+$(set.commit).val()+'</b>';
+      var type=$(set.type).val();
+      var arr=[];
+      if(type == 'c1'){
+        arr.push('git remote add '+remote_github+' https://github.com/'+user+'/'+repository+'.git');
+      } else if(type == 'c2'){
+        arr.push('git remote add '+remote_google+' https://'+user+'@code.google.com/p/'+repository+'/');
+      } else if(type == 'c3'){
+        arr.push('git push '+remote+' --delete '+branch);
+      } else if(type == 'c4'){
+        arr.push('git branch -d '+branch);
+      } else if(type == 'c5'){
+        arr.push('git branch -m '+branch+' <b>[branch new name]</b>');
+      } else if(type == 'c6'){
+        arr.push('git checkout '+branch);
+      } else if(type == 'c7'){
+        arr.push('git push '+remote_google+' +HEAD');
+      } else if(type == 'c8'){
+        arr.push('git reset --hard '+SHA1);
+      } else if(type == 'c9'){
+        arr.push('git commit -a -m \''+commit+'\'');
+      } else if(type == 'c10'){
+        arr.push('git push '+remote+' '+branch);
+      } else if(type == 'c11'){
+        arr.push('git fetch '+remote+' '+branch);
+      }
+      $(set.show).html(arr.join(''));
       f.log(d);
+      /*
       f.log('## Google Code');
       f.log('+ **Create New Repository**');
       f.log('  https://code.google.com/hosting/createProject');
       f.log('+ **Add Remote**');
-      f.log('  git remote add master https://'+user+'@code.google.com/p/'+repository+'/');
+      f.log('  git remote add '+remote_google+' https://'+user+'@code.google.com/p/'+repository+'/');
       f.log('+ **Delete Commit**');
       f.log(' + **Local**');
       f.log('   git reset --hard '+SHA1);
       f.log(' + **Remote**');
-      f.log('   git push master +HEAD');
+      f.log('   git push '+remote_google+' +HEAD');
       f.log('******************************************************************************************');
       f.log('## GitHub');
       f.log('+ **Create New Repository**');
       f.log('  https://github.com/new');
       f.log('+ **Add Remote**');
-      f.log('  git remote add origin https://github.com/'+user+'/'+repository+'.git');
+      f.log('  git remote add '+remote_github+' https://github.com/'+user+'/'+repository+'.git');
       f.log('+ **Delete Commit**');
       f.log(' + **Local**');
       f.log('   git reset --hard '+SHA1);
       f.log(' + **Remote**');
-      f.log('   git push origin +HEAD');
+      f.log('   git push '+remote_github+' +HEAD');
       f.log('******************************************************************************************');
+      */
     }
     initialize();
   }

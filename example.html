@@ -12,26 +12,65 @@
       <div class='col-md-12'>
         <h1>Example</h1>
         <form>
+          <div class="form-group"><h2>Default</h2></div>
+          <div class="form-group">
+            <label for="user">Google Code Remote</label>
+            <input type='text' id='remote_google' value='master' class='form-control' /> 
+          </div>
+          <div class="form-group">
+            <label for="user">GitHub Remote</label>
+            <input type='text' id='remote_github' value='origin' class='form-control' /> 
+          </div>
+          <div class="form-group"><h2>Set</h2></div>
+          <div class="form-group">
+            <label for="user">Remote(Default: GitHub)</label>
+            <input type='text' id='remote' value='origin'  class='form-control' />
+          </div>
           <div class="form-group">
             <label for="user">Username</label>
             <input type='text' id='user' value='syuemingfang'  class='form-control' />
           </div>
           <div class="form-group">
-            <label for="user">Project</label>
+            <label for="user">Repository</label>
             <input type='text' id='repository' value='syuemingfang-default' class='form-control' /> 
           </div>
           <div class="form-group">
-            <label for="user">SHA1</label>
+            <label for="user">branch</label>
+            <input type='text' id='branch' value='master' class='form-control' /> 
+          </div>
+          <div class="form-group">
+            <label for="user">Second Last SHA1</label>
             <input type='text' id='SHA1' value='12345' class='form-control' /> 
           </div>
-          <input type='button' id='button' class='btn' value="Yes, I'm Stupid">
-        </form>       
-        <script type='text/javascript' src='js/helpyoustupid.js'></script>
-        <script>
-          $('#button').helpyoustupid();
-        </script>
+          <div class="form-group">
+            <label for="user">Commit</label>
+            <input type='text' id='commit' value='initialize' class='form-control' /> 
+          </div>   
+          <div class="form-group">
+            <label for="user">Select Your Type</label>
+            <select class='form-control' id='type'>
+            <option value='c1'>新增遠端(GitHub)</option>
+            <option value='c2'>新增遠端(Goode Code)</option>
+            <option value='c3'>刪除遠端Branch</option>
+            <option value='c4'>刪除本地Branch</option>
+            <option value='c5'>修改本地Branch</option>
+            <option value='c6'>切換本地Branch</option>
+            <option value='c7'>刪除遠端最新一筆Commit</option>
+            <option value='c8'>刪除本地最新一筆Commit</option>
+            <option value='c9'>新增本地Commit</option>
+            <option value='c10'>將本地上傳到遠端</option>
+            <option value='c11'>將遠端下載回本地</option>
+            </select> 
+          </div>
+          <blockquote id='show'></blockquote>
+        </form>   
       </div>
     </div>
   </div>
+    
+<script type='text/javascript' src='js/helpyoustupid.js'></script>
+<script>
+  $('#type').helpyoustupid();
+</script>
 </body>
 </html>
