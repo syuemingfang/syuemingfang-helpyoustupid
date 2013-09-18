@@ -1,6 +1,6 @@
 /*!
 
-# Help You, Sucker
+# Help You, Stupid
   bj4
 
   CDN: `https://syuemingfang-helpyoustupid.googlecode.com/git/js/helpyoustupid.js`
