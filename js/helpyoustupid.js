@@ -49,7 +49,8 @@
     set: {
       on: 'click',
       user: '#user', //!+ **user**
-      repository: '#repository' //!+ **project**
+      repository: '#repository', //!+ **project**
+      SHA1: '#SHA1', //!+ **SHA1**
     },
     //! 
     //!****************************************************************************************************
@@ -78,17 +79,30 @@
       var d=new Date();
       var user=$(set.user).val();
       var repository=$(set.repository).val();
+      var SHA1=$(set.SHA1).val();
       f.log(d);
       f.log('## Google Code');
       f.log('+ **Create New Repository**');
       f.log('  https://code.google.com/hosting/createProject');
-      f.log('+ **Use Git Bash**');
+      f.log('+ **Add Remote**');
       f.log('  git remote add master https://'+user+'@code.google.com/p/'+repository+'/');
+      f.log('+ **Delete Commit**');
+      f.log(' + **Local**');
+      f.log('   git reset --hard '+SHA1);
+      f.log(' + **Remote**');
+      f.log('   git push master +HEAD');
+      f.log('******************************************************************************************');
       f.log('## GitHub');
       f.log('+ **Create New Repository**');
       f.log('  https://github.com/new');
-      f.log('+ **Use Git Bash**');
+      f.log('+ **Add Remote**');
       f.log('  git remote add origin https://github.com/'+user+'/'+repository+'.git');
+      f.log('+ **Delete Commit**');
+      f.log(' + **Local**');
+      f.log('   git reset --hard '+SHA1);
+      f.log(' + **Remote**');
+      f.log('   git push origin +HEAD');
+      f.log('******************************************************************************************');
     }
     initialize();
   }
